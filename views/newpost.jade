@@ -1,0 +1,20 @@
+html
+  head
+    title New Post
+    link(rel='stylesheet' type='text/css' href='/stylesheets/newpost.css')
+  body
+    h1 New Post
+    br
+    form(method='post' action='/')
+      label Subject
+      br
+      input(type='text' name='subject')
+      br
+      br
+      label Blog
+      br
+      textarea(name='content' rows='15' cols='50')
+      br
+      input(type='submit' value='Submit')
+      br
+      span(class='error') #{error}
