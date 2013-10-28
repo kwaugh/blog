@@ -1,0 +1,12 @@
+html
+  head
+    title Permalink
+    link(rel='stylesheet' type='text/css' href='/stylesheets/blog.css')
+  body
+    div(id='content')
+      div(class='post')
+        div(class='post-heading')
+          div(class='post-title') #{doc.subject}
+          div(class='post-date') #{doc.date}
+        div(class='post-content')
+          pre #{doc.content}

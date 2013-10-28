@@ -1,21 +1,20 @@
 html
   head
     title New Post
-    link(rel='stylesheet' type='text/css' href='/stylesheets/newpost.css')
-    script(src='/javascripts/validate.js')
+    link(rel='stylesheet' type='text/css' href='/stylesheets/blog.css')
   body
     h1 New Post
     br
     form(method='post' action='/' name='blogpost')
       label Subject
       br
-      input(type='text' name='subject')
+      input(type='text' name='subject' required)
       br
       br
       label Blog
       br
-      textarea(name='content' rows='15' cols='50')
+      textarea(name='content' rows='15' cols='50' required)
       br
-      input(type='button' value='Submit' onclick='submitPost()')
+      input(type='submit' value='Submit')
       br
       span(class='error') #{error}

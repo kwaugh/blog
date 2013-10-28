@@ -1,7 +1,15 @@
 html
   head
-    link(rel='stylesheet' type='text/css' href='/stylesheets/index.css')
+    link(rel='stylesheet' type='text/css' href='/stylesheets/blog.css')
     title Keivaun's Blog
   
   body
     h1(class='title' align='center') Keivaun's Blog
+    div(id='content')
+    each val in docs
+      div(class='post')
+        div(class='post-heading')
+          div(class='post-title') #{val.subject}
+          div(class='post-date') #{val.date}
+        div(class='post-content')
+          pre #{val.content}

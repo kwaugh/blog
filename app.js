@@ -9,6 +9,7 @@ var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
 var newpost = require('./routes/newpost');
+var permalink = require('./routes/permalink');
 
 var app = express();
 
@@ -31,6 +32,7 @@ if ('development' == app.get('env')) {
 app.all('/', routes.index);
 app.get('/users', user.list);
 app.all('/newpost', newpost.newpost);
+app.get('/:id', permalink.permalink);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
