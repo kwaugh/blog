@@ -18,10 +18,18 @@ exports.index = function(req, res){
     db.posts.save({'subject': subject, 'content': content, 'date': d}, function(err, savedUser){
       if(err)
         console.log('ERROR');
-    })
+      db.posts.findOne({'subject': subject, 'content': content}, function(err, doc){
+        if(err)
+          console.log('Error');
+        console.log('Document id is ' + doc._id);
+        res.redirect('/' + doc._id);
+      });
+    });
   }
-  db.posts.find().limit(10).sort({date:-1}, function(error, docs){
-    res.render('index', {'docs': docs});
-  });
+  else{
+    db.posts.find().limit(10).sort({date:-1}, function(error, docs){
+      res.render('index', {'docs': docs});
+    });
+  }
   
 };

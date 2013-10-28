@@ -4,7 +4,10 @@ html
     title Keivaun's Blog
   
   body
-    h1(class='title' align='center') Keivaun's Blog
+    h1(class='main-title' align='center') Keivaun's Blog
+    div(align='center') 
+      a(href='/newpost') Create New Post
+    
     div(id='content')
     each val in docs
       div(class='post')
