@@ -3,10 +3,8 @@ function validateInput(){
 }
 
 function submitPost(){
-  if(validateInput()){
+  if(validateInput())
     document.getElementsByName('blogpost')[0].submit();
-  }
-  else{
+  else
     alert("Please provide both a subject and content");
-  }
 }
