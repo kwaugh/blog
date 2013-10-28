@@ -2,10 +2,11 @@ html
   head
     title New Post
     link(rel='stylesheet' type='text/css' href='/stylesheets/newpost.css')
+    script(src='/javascripts/validate.js')
   body
     h1 New Post
     br
-    form(method='post' action='/')
+    form(method='post' action='/' name='blogpost')
       label Subject
       br
       input(type='text' name='subject')
@@ -15,6 +16,6 @@ html
       br
       textarea(name='content' rows='15' cols='50')
       br
-      input(type='submit' value='Submit')
+      input(type='button' value='Submit' onclick='submitPost()')
       br
       span(class='error') #{error}
