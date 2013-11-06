@@ -1,0 +1,32 @@
+html
+  head
+    title Signup Page
+    link(rel='stylesheet' type='text/css' href='/stylesheets/signup.css')
+  body
+    h1 Signup
+    form(method='post')
+      table
+        tr
+          td(class='label') Username
+          td
+            if locals.username 
+              input(type='text' name='username' value='#{username}' required)
+            else
+              input(type='text' name='username' value='' required)
+          td(class='error') #{userError}
+        tr
+          td(class='label') Password
+          td
+            input(type='password' name='password' value='' required)
+          td(class='error') #{pwError}
+        tr
+          td(class='label') Verify Password
+          td
+            input(type='password' name='verifyPassword' value='' required)
+          td(class='error') #{verifyPasswordError}
+        tr
+          td(class='label') Email (optional)
+          td
+            input(type='text' name='email' value='')
+          td(class='error') #{emailError}
+      input(type='submit')

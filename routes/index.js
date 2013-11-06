@@ -5,7 +5,7 @@
 
 exports.index = function(req, res){
   var databaseUrl = 'blog';
-  var collections= ['posts'];
+  var collections = ['posts'];
   var db = require('mongojs').connect(databaseUrl, collections);
   var subject = req.param('subject');
   var content = req.param('content');
@@ -15,7 +15,7 @@ exports.index = function(req, res){
   console.log("subject: ", subject, "   content: ", content);
   
   if(req.param('subject') && req.param('content')){
-    db.posts.save({'subject': subject, 'content': content, 'date': d}, function(err, savedUser){
+    db.posts.save({'subject': subject, 'content': content, 'date': d}, function(err, savedPost){
       if(err)
         console.log('ERROR');
       db.posts.findOne({'subject': subject, 'content': content}, function(err, doc){
