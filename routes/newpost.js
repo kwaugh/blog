@@ -1,4 +1,4 @@
-exports.newpost = function(req,res){
+module.exports = function(req,res){
   if(!req.param('subject') && !req.param('content')){
     console.log('Subject: ' + req.param('subject') + 'Content: ' + req.param('content'));
     res.render('newpost'); 

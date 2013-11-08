@@ -1,12 +1,15 @@
 html
   head
     title Login
+    link(rel='stylesheet' type='text/css' href='/stylesheets/signup.css')
   body
-    form(action='/welcome' method='post')
-      label Username
-      input(type='text' name='username')
+    h1 Login
+    form(method='post')
+      label(class='label') Username
+      input(type='text' name='username' required)
       br
-      label Password
-      input(type='password' name='password')
+      label(class='label') Password
+      input(type='password' name='password' required)
       br
-      input(type='submit' value='Submit');
+      input(type='submit' value='Submit')
+      div(class='error') #{loginError}

@@ -2,6 +2,13 @@
 /*
  * GET home page.
  */
+exports.login = require('./login');
+exports.newpost = require('./newpost');
+exports.welcome = require('./welcome');
+exports.signup = require('./signup');
+exports.permalink = require('./permalink');
+exports.logout = require('./logout');
+
 
 exports.index = function(req, res){
   var databaseUrl = 'blog';

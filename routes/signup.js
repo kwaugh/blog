@@ -25,7 +25,7 @@ function isValidEmail(email){
   return false;
 }
 
-exports.signup = function(req, res){
+module.exports = function(req, res){
   var username = req.param('username');
   var pw = req.param('password');
   var email = req.param('email');
@@ -42,6 +42,7 @@ exports.signup = function(req, res){
           if(isValidEmail(email))
           {
             req.session.username = username;
+            req.session.isLoggedIn = true;
             db.users.find({'username':username}, function(err, docs){
               if(!docs.length > 0){
                 var salt = bcrypt.genSaltSync(10);
