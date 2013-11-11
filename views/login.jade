@@ -5,11 +5,18 @@ html
   body
     h1 Login
     form(method='post')
-      label(class='label') Username
-      input(type='text' name='username' required)
-      br
-      label(class='label') Password
-      input(type='password' name='password' required)
-      br
-      input(type='submit' value='Submit')
+      table
+        tr
+          td
+            label(class='label') Username
+          td
+            input(type='text' name='username' required)
+        tr
+          td
+            label(class='label') Password
+          td
+            input(type='password' name='password' required)
+        tr
+          td
+            input(type='submit' value='Submit')
       div(class='error') #{loginError}

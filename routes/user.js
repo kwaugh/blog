@@ -1,8 +1,10 @@
+var databaseUrl = 'blog';
+var collections = ['posts'];
+var db = require('mongojs').connect(databaseUrl, collections);
+var d = new Date();
 
-/*
- * GET users listing.
- */
-
-exports.list = function(req, res){
-  res.send("respond with a resource");
+module.exports = function(req, res){ 
+  db.posts.find({username: req.param('user')}).limit(10).sort({date:-1}, function(error, docs){
+    res.render('index', {'user': req.param('user'), 'docs': docs});
+  });  
 };

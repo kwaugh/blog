@@ -34,6 +34,7 @@ app.all('/signup', routes.signup);
 app.get('/welcome', routes.welcome);
 app.all('/login', routes.login);
 app.get('/logout', routes.logout);
+app.get('/user/:user', routes.user);
 app.get('/:id', routes.permalink);
 app.all('/', routes.index);
 

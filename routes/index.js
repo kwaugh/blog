@@ -8,6 +8,7 @@ exports.welcome = require('./welcome');
 exports.signup = require('./signup');
 exports.permalink = require('./permalink');
 exports.logout = require('./logout');
+exports.user = require('./user');
 
 
 exports.index = function(req, res){
@@ -22,10 +23,10 @@ exports.index = function(req, res){
   console.log("subject: ", subject, "   content: ", content);
   
   if(req.param('subject') && req.param('content')){
-    db.posts.save({'subject': subject, 'content': content, 'date': d}, function(err, savedPost){
+    db.posts.save({'username': req.session.username, 'subject': subject, 'content': content, 'date': d}, function(err, savedPost){
       if(err)
         console.log('ERROR');
-      db.posts.findOne({'subject': subject, 'content': content}, function(err, doc){
+      db.posts.findOne({'username': req.session.username, 'subject': subject, 'content': content}, function(err, doc){
         if(err)
           console.log('Error');
         console.log('Document id is ' + doc._id);
@@ -35,7 +36,7 @@ exports.index = function(req, res){
   }
   else{
     db.posts.find().limit(10).sort({date:-1}, function(error, docs){
-      res.render('index', {'docs': docs});
+      res.render('index', {'name': 'Everyone', 'docs': docs});
     });
   }
   

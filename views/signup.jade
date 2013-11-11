@@ -7,6 +7,11 @@ html
     form(method='post')
       table
         tr
+          td(class='label') Name
+          td
+            input(type='text' name='name' required)
+          td(class='error') #{nameError}
+        tr
           td(class='label') Username
           td
             if locals.username 

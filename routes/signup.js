@@ -3,6 +3,11 @@ var collections= ['users'];
 var db = require('mongojs').connect(databaseUrl, collections);
 var bcrypt = require('bcrypt');
 
+function isValidName(name){
+  var valid = /[\w]{1,30}/;
+  return valid.test(name);
+}
+
 function isValidUsername(username){
   console.log('testing username');
   console.log(username);
@@ -26,48 +31,54 @@ function isValidEmail(email){
 }
 
 module.exports = function(req, res){
+  var name = req.param('name');
   var username = req.param('username');
   var pw = req.param('password');
   var email = req.param('email');
-  console.log('username ', username, ' password ', pw, ' email ', email);
-  if(req.param('username') && req.param('password') && req.param('verifyPassword'))
+  console.log('name', name, ' username ', username, ' password ', pw, ' email ', email);
+  if(req.param('name') && req.param('username') && req.param('password') && req.param('verifyPassword'))
   {
     console.log('is username valid?', isValidUsername(username));
-    if(isValidUsername(username))
+    if(isValidName(name))
     {
-      if(isValidPw(pw))
+      if(isValidUsername(username))
       {
-        if(pw === req.param('verifyPassword'))
+        if(isValidPw(pw))
         {
-          if(isValidEmail(email))
+          if(pw === req.param('verifyPassword'))
           {
-            req.session.username = username;
-            req.session.isLoggedIn = true;
-            db.users.find({'username':username}, function(err, docs){
-              if(!docs.length > 0){
-                var salt = bcrypt.genSaltSync(10);
-                var hash = bcrypt.hashSync(pw, salt);
-                db.users.save({'username': username, 'password': hash, 'email': email}, function(err, savedUser){
-                  if(err)
-                    console.log('THERE WAS AN ERROR');
-                });
-                res.redirect('/welcome');
-              }
-              else
-                res.render('signup', {userError: "That username is already taken"});
-            });
+            if(isValidEmail(email))
+            {
+              req.session.username = username;
+              req.session.isLoggedIn = true;
+              db.users.find({'username':username}, function(err, docs){
+                if(!docs.length > 0){
+                  var salt = bcrypt.genSaltSync(10);
+                  var hash = bcrypt.hashSync(pw, salt);
+                  db.users.save({'username': username, 'password': hash, 'email': email}, function(err, savedUser){
+                    if(err)
+                      console.log('THERE WAS AN ERROR');
+                  });
+                  res.redirect('/welcome');
+                }
+                else
+                  res.render('signup', {userError: "That username is already taken"});
+              });
+            }
+            else
+              res.render('signup', {username: username, emailError: "That's not a valid email address"});
           }
           else
-            res.render('signup', {username: username, emailError: "That's not a valid email address"});
+            res.render('signup', {username: username, verifyPasswordError: "The passwords do not match"}); 
         }
         else
-          res.render('signup', {username: username, verifyPasswordError: "The passwords do not match"}); 
+          res.render('signup', {username: username, pwError: "That's not a valid password"});
       }
       else
-        res.render('signup', {username: username, pwError: "That's not a valid password"});
+        res.render('signup', {userError: "That's not a valid username"});
     }
     else
-      res.render('signup', {userError: "That's not a valid username"});
+        res.render('signup', {nameError: "That's not a valid name"});
   }
   else
     res.render('signup',{}); 
