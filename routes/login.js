@@ -15,6 +15,8 @@ module.exports = function(req, res){
         console.log('The doc is: ' + doc);
         bcrypt.compare(req.param('password'), doc.password, function(err, result){
           if(result){
+            //db.users.findOne({
+            req.session.name = doc.name;
             req.session.username = req.param('username');
             req.session.isLoggedIn = true;
             res.redirect('/welcome'); 

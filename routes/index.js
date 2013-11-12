@@ -23,7 +23,7 @@ exports.index = function(req, res){
   console.log("subject: ", subject, "   content: ", content);
   
   if(req.param('subject') && req.param('content')){
-    db.posts.save({'username': req.session.username, 'subject': subject, 'content': content, 'date': d}, function(err, savedPost){
+    db.posts.save({'name': req.session.name, 'username': req.session.username, 'subject': subject, 'content': content, 'date': d}, function(err, savedPost){
       if(err)
         console.log('ERROR');
       db.posts.findOne({'username': req.session.username, 'subject': subject, 'content': content}, function(err, doc){

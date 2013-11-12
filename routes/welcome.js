@@ -1,6 +1,6 @@
 module.exports = function(req, res){
   if(req.session.isLoggedIn)
-    res.render('welcome', {username: req.session.username});
+    res.render('welcome', {name: req.session.name});
   else
     res.send('Please <a href="/login">login</a> first');
 };

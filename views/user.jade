@@ -1,14 +1,17 @@
 extends layout
 
 block header
-  title Permalink
   link(rel='stylesheet' type='text/css' href='/stylesheets/blog.css')
-  
+  title #{name}'s Blog
+
 block content
+  h1(class='main-title' align='center') #{name}'s Blog
+  
   div(id='content')
+  each val in docs
     div(class='post')
       div(class='post-heading')
-        div(class='post-title') #{doc.subject}
-        div(class='post-date') #{doc.date}
+        div(class='post-title') #{val.subject}
+        div(class='post-date') #{val.date}
       div(class='post-content')
-        pre #{doc.content}
+        pre #{val.content}

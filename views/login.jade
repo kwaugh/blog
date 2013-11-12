@@ -1,22 +1,24 @@
-html
-  head
-    title Login
-    link(rel='stylesheet' type='text/css' href='/stylesheets/signup.css')
-  body
-    h1 Login
-    form(method='post')
-      table
-        tr
-          td
-            label(class='label') Username
-          td
-            input(type='text' name='username' required)
-        tr
-          td
-            label(class='label') Password
-          td
-            input(type='password' name='password' required)
-        tr
-          td
-            input(type='submit' value='Submit')
-      div(class='error') #{loginError}
+extends layout
+
+block header
+  title Login
+  link(rel='stylesheet' type='text/css' href='/stylesheets/signup.css')
+  
+block content
+  h1 Login
+  form(method='post')
+    table
+      tr
+        td
+          label(class='label') Username
+        td
+          input(type='text' name='username' required)
+      tr
+        td
+          label(class='label') Password
+        td
+          input(type='password' name='password' required)
+      tr
+        td
+          input(type='submit' value='Submit')
+    div(class='error') #{loginError}

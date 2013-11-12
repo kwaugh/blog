@@ -1,7 +1,25 @@
 doctype 5
 html
   head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet' type='text/css' href='/stylesheets/dropdown.css')
+    block header
   body
-    block content
+    div(class='container')
+      nav
+        ul
+          li
+            a(href="/") Home
+          li
+            a(href="/newpost") Create New Post
+          li
+            a(href="/manage") Manage Posts
+          li
+            a(href="") Account
+            ul
+              li
+                a(href="/signup") Sign Up
+              li
+                a(href="/login") Log In
+              li
+                a(href="/logout") Log Out
+  block content

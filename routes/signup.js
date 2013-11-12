@@ -49,13 +49,14 @@ module.exports = function(req, res){
           {
             if(isValidEmail(email))
             {
+              req.session.name = name;
               req.session.username = username;
               req.session.isLoggedIn = true;
               db.users.find({'username':username}, function(err, docs){
                 if(!docs.length > 0){
                   var salt = bcrypt.genSaltSync(10);
                   var hash = bcrypt.hashSync(pw, salt);
-                  db.users.save({'username': username, 'password': hash, 'email': email}, function(err, savedUser){
+                  db.users.save({'name': name, 'username': username, 'password': hash, 'email': email}, function(err, savedUser){
                     if(err)
                       console.log('THERE WAS AN ERROR');
                   });
