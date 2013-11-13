@@ -9,6 +9,7 @@ exports.signup = require('./signup');
 exports.permalink = require('./permalink');
 exports.logout = require('./logout');
 exports.user = require('./user');
+exports.manage = require('./manage');
 
 
 exports.index = function(req, res){

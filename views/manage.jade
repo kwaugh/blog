@@ -1,0 +1,24 @@
+extends layout
+
+block header
+  title Manage Posts
+  link(rel='stylesheet' type='text/css' href='/stylesheets/blog.css')
+  
+block content
+  h1(class='main-title' align='center') Manage Posts
+  
+  div(id='content')
+    each val in docs
+      div(class='post')
+        div(class='post-heading')
+          div(class='post-title') #{val.subject}
+          div(class='post-date') #{val.date}
+        form(method='post' action='/manage' name='updatePosts')
+          div(class='post-content')
+            textarea(name='updatedPost' style='width: 794px; height: 200px') #{val.content}
+          input(type='hidden' name='ObjectId' value='#{val._id}')
+          input(type='submit' value='Submit Changes' id='changes')
+          input(type='submit' value='Delete Post' id='deletePost')
+        br
+        br
+        br

@@ -40,6 +40,17 @@ h2 {
     color: red;
 }
 
+#changes {
+    font-size: 14px;
+    margin: 0px;
+}
+
+#deletePost {
+    font-size: 14px;
+    margin: 0px;
+    float: right;
+}
+
 label {
   display: block;
   font-size: 20px;
@@ -84,6 +95,7 @@ input[type=submit] {
 .post-heading {
     position: relative;
     border-bottom: 3px solid #666;
+    z-index: -1;
 }
 
 .post-title {
