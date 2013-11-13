@@ -9,6 +9,11 @@ body {
     color: #333;
 }
 
+a {
+  text-decoration: none;
+  color: #333;
+}
+
 .login-area {
     font-size: 13px;
     color: gray;
@@ -95,7 +100,6 @@ input[type=submit] {
 .post-heading {
     position: relative;
     border-bottom: 3px solid #666;
-    z-index: -1;
 }
 
 .post-title {
@@ -115,7 +119,6 @@ input[type=submit] {
     right: 0px;
     bottom: 0px;
     color: #999;
-
 }
 
 .post-content {

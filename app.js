@@ -35,7 +35,8 @@ app.get('/welcome', routes.welcome);
 app.all('/login', routes.login);
 app.get('/logout', routes.logout);
 app.all('/manage', routes.manage);
-app.get('/user/:user', routes.user);
+app.get('/users', routes.users);
+app.get('/users/:user', routes.user);
 app.get('/:id', routes.permalink);
 app.all('/', routes.index);
 

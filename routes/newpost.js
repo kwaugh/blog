@@ -11,6 +11,6 @@ module.exports = function(req,res){
     }
   }
   else{
-    res.send('Please <a href="/login">login</a> first');
+    res.redirect('/login');
   }
 };

@@ -8,6 +8,7 @@ exports.welcome = require('./welcome');
 exports.signup = require('./signup');
 exports.permalink = require('./permalink');
 exports.logout = require('./logout');
+exports.users = require('./users');
 exports.user = require('./user');
 exports.manage = require('./manage');
 

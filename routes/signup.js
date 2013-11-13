@@ -63,23 +63,23 @@ module.exports = function(req, res){
                   res.redirect('/welcome');
                 }
                 else
-                  res.render('signup', {userError: "That username is already taken"});
+                  res.render('signup', {name: name, userError: "That username is already taken"});
               });
             }
             else
-              res.render('signup', {username: username, emailError: "That's not a valid email address"});
+              res.render('signup', {name: name, username: username, emailError: "That's not a valid email address"});
           }
           else
-            res.render('signup', {username: username, verifyPasswordError: "The passwords do not match"}); 
+            res.render('signup', {name: name, username: username, verifyPasswordError: "The passwords do not match"}); 
         }
         else
-          res.render('signup', {username: username, pwError: "That's not a valid password"});
+          res.render('signup', {name: name, username: username, pwError: "That's not a valid password"});
       }
       else
-        res.render('signup', {userError: "That's not a valid username"});
+        res.render('signup', {name: name, userError: "That's not a valid username"});
     }
     else
-        res.render('signup', {nameError: "That's not a valid name"});
+        res.render('signup', {username: username, nameError: "That's not a valid name"});
   }
   else
     res.render('signup',{}); 
