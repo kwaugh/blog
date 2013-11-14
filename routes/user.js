@@ -1,11 +1,25 @@
-var databaseUrl = 'blog';
-var collections = ['posts'];
-var db = require('mongojs').connect(databaseUrl, collections);
-var d = new Date();
-
 module.exports = function(req, res){ 
-  console.log('name: ' + req.session.name);
-  db.posts.find({username: req.param('user')}).limit(10).sort({date:-1}, function(error, docs){
-    res.render('user', {'name': req.session.name, 'docs': docs});
-  });  
+  var databaseUrl = 'blog';
+  var collections= ['users'];
+  var mongojs = require('mongojs');
+  var db = mongojs.connect(databaseUrl, collections);
+  
+  db.users.findOne({username: req.param('user')}, function(err, doc){
+    console.log('doc: ' + doc);
+    console.log('NAME: ' + doc.name);
+    var name = doc.name;
+    
+    collections = ['posts'];
+    db = mongojs.connect(databaseUrl, collections);
+    db.posts.find({username: req.param('user')}).sort({date: -1}, function(err, docs){
+    if(docs.length === 0)
+        res.render('user', {'name': name, 'docs': {}});
+    else
+      res.render('user', {'name': name, 'docs': docs});
+    });  
+  });
+  
+  
+  
+  
 };

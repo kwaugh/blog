@@ -17,8 +17,8 @@ block content
           div(class='post-content')
             textarea(name='updatedPost' style='width: 794px; height: 200px') #{val.content}
           input(type='hidden' name='ObjectId' value='#{val._id}')
-          input(type='submit' value='Submit Changes' id='changes')
-          input(type='submit' value='Delete Post' id='deletePost')
+          input(type='submit' name='submit' value='Submit Changes' id='changes')
+          input(type='submit' name='submit' value='Delete Post' id='deletePost')
         br
         br
         br
