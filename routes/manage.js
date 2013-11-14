@@ -15,6 +15,7 @@ module.exports = function(req, res){
     });
   }
   else{
-   res.redirect('/login'); 
+    req.session.unauthorizedAccess = true;
+    res.redirect('/login'); 
   }
 }

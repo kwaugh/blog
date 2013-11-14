@@ -28,5 +28,10 @@ module.exports = function(req, res){
     });   
   }
   else
-    res.render('login');
+    if(req.session.unauthorizedAccess){
+      req.session.unauthorizedAccess = false;
+      res.render('login', {message: 'You must first log in before you can access this page'});
+    }
+    else
+      res.render('login');
 };

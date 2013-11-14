@@ -2,7 +2,14 @@ extends layout
 
 block header
   link(rel='stylesheet' type='text/css' href='/stylesheets/blog.css')
+  link(rel='stylesheet' type='text/css' href='/stylesheets/users.css')
   title View All Users
 
 block content
   h1(class='main-title' align='center') View All Users
+  each val in docs
+    div(class='user')
+      div(class='fullName')
+        a(href='/users/#{val.username}') #{val.name}
+      div(class='username') #{val.username}
+      br
