@@ -32,7 +32,7 @@ module.exports = function(req, res){
       req.session.unauthorizedAccess = false;
       res.render('login', {message: 'You must first log in before you can access this page'});
     }
-    if(req.session.justLoggedOut){
+    else if(req.session.justLoggedOut){
       req.session.justLoggedOut = false;
       res.render('login', {message: 'You have been logged out'});
     }
