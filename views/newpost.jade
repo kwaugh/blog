@@ -6,8 +6,9 @@ block header
   
 block content
   h1 New Post
+  div(class='error') #{error}
   br
-  form(method='post' action='/' name='blogpost')
+  form(method='post' name='blogpost')
     label Subject
     br
     input(type='text' name='subject' required)
