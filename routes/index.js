@@ -11,6 +11,7 @@ exports.logout = require('./logout');
 exports.users = require('./users');
 exports.user = require('./user');
 exports.manage = require('./manage');
+exports.morePosts = require('./morePosts');
 
 var databaseUrl = 'blog';
 var collections = ['posts'];

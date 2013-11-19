@@ -2,6 +2,7 @@ extends layout
 
 block header
   link(rel='stylesheet' type='text/css' href='/stylesheets/blog.css')
+  script(src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js")
   title #{name}'s Blog
   
 block content
@@ -16,3 +17,4 @@ block content
         div(class='post-date') #{val.date}
       div(class='post-content')
         pre #{val.content}
+  input(type='button' value='Load More Posts' onclick="$.get('/json/morePosts', function(data){alert('success' + data);})")

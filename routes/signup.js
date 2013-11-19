@@ -50,6 +50,7 @@ module.exports = function(req, res){
             if(isValidEmail(email))
             {
               req.session.name = name;
+              req.session.morePosts = 0;
               req.session.username = username;
               req.session.isLoggedIn = true;
               db.users.find({'username':username}, function(err, docs){

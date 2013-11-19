@@ -37,6 +37,7 @@ app.get('/logout', routes.logout);
 app.all('/manage', routes.manage);
 app.get('/users', routes.users);
 app.get('/users/:user', routes.user);
+app.get('/json/morePosts', routes.morePosts);
 app.get('/:id', routes.permalink);
 app.all('/', routes.index);
 

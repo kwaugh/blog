@@ -29,9 +29,11 @@ module.exports = function(req,res){
           });
         });
       }
-      console.log('in else');
-      res.render('newpost', {error: 'Please provide both a subject and content'});
-      console.log('Subject: ' + subject + ' Content: ' + content);
+      else{
+        console.log('in else');
+        res.render('newpost', {error: 'Please provide both a subject and content'});
+        console.log('Subject: ' + subject + ' Content: ' + content);
+      }
     }
   }
   else{
