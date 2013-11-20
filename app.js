@@ -2,8 +2,8 @@
 /**
  * Module dependencies.
  */
-var mongojs = require('mongojs');
-global.DB = mongojs('blog');
+global.MONGOJS = require('mongojs');
+global.DB = MONGOJS('blog');
 global.POSTS = DB.collection('posts');
 global.USERS = DB.collection('users');
 

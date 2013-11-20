@@ -1,6 +1,6 @@
 function load(){
   $.getJSON('/json/morePosts', function(data){
-    alert('success' + data);
+    //alert('success' + data);
     $('body')
       .append($('<div></div>')
         .addClass('post')
