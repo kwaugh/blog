@@ -1,8 +1,3 @@
-var databaseUrl = 'blog';
-var collections = ['posts'];
-var db = require('mongojs').connect(databaseUrl, collections);
-var d = new Date();
-
 module.exports = function(req,res){
   var subject = req.param('subject');
   var content = req.param('content');
@@ -18,10 +13,10 @@ module.exports = function(req,res){
           res.render('newpost', {error: 'Please limit your subject to 40 characters'});
           return;
         }
-        db.posts.save({'name': req.session.name, 'username': req.session.username, 'subject': subject, 'content': content, 'date': d}, function(err, savedPost){
+        POSTS.save({'name': req.session.name, 'username': req.session.username, 'subject': subject, 'content': content, 'date': d}, function(err, savedPost){
           if(err)
             console.log('ERROR');
-          db.posts.findOne({'username': req.session.username, 'subject': subject, 'content': content}, function(err, doc){
+          POSTS.findOne({'username': req.session.username, 'subject': subject, 'content': content}, function(err, doc){
             if(err)
               console.log('Error');
             console.log('Document id is ' + doc._id);

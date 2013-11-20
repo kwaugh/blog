@@ -2,6 +2,10 @@
 /**
  * Module dependencies.
  */
+var mongojs = require('mongojs');
+global.DB = mongojs('blog');
+global.POSTS = DB.collection('posts');
+global.USERS = DB.collection('users');
 
 var express = require('express');
 var routes = require('./routes');
