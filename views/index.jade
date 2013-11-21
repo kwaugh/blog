@@ -10,12 +10,12 @@ block content
   h1(class='main-title' align='center') Blog
 
   div(id='content')
-  each val in docs
-    div(class='post')
-      div(class='post-heading')
-        div(class='post-title')
-          a(href='/#{val._id}') #{val.subject} - #{val.name}
-        div(class='post-date') #{val.date}
-      div(class='post-content')
-        pre #{val.content}
-  input(type='button' value='Load More Posts' onclick='load()')
+    each val in docs
+      div(class='post')
+        div(class='post-heading')
+          div(class='post-title')
+            a(href='/#{val._id}') #{val.subject} - #{val.name}
+          div(class='post-date') #{val.date}
+        div(class='post-content')
+          pre #{val.content}
+  input(type='button' id='loadMorePosts' value='Load More Posts' onclick='load()')

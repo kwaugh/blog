@@ -1,23 +1,29 @@
 function load(){
   $.getJSON('/json/morePosts', function(data){
     //alert('success' + data);
-    for(var i = 0; i < data.length; i++){
-      $('body')
-        .append($('<div></div>')
-          .addClass('post')
-          .append($('<div></div>')
-            .addClass('post-heading')
-            .append($('<div></div>')
-              .addClass('post-title')
-              .append('<a href=/' + data[0].id + '>' + data[0].subject + ' - ' + data[0].name + '</a>'))
-            .append($('<div></div>')
-              .addClass('post-date')
-              .append(data[0].date)))
-          .append($('<div></div>')
-            .addClass('post-content')
-            .append($('<pre></pre>')
-              .append(data[0].content)))
-        )
+    console.log('Data: ' + data);
+    if(data['error'] === 'There are no more posts'){
+      $('#loadMorePosts').before('<div class="error">There are no more posts</div>');
+      $('#loadMorePosts').remove();
+
+      
+      window.scrollTo(0,document.body.scrollHeight);
+    }
+    else{
+      for(var i = 0; i < data.length; i++){
+        $('#loadMorePosts')
+          .before($('<div class="post"></div>')
+            .append($('<div class="post-heading"></div>')
+              .append($('<div class="post-title"></div>')
+                .append('<a href=/' + data[i].id + '>' + data[i].subject + ' - ' + data[i].name + '</a>'))
+              .append($('<div class="post-date"></div>')
+                .append(data[i].date)))
+            .append($('<div class="post-content"></div>')
+              .append($('<pre></pre>')
+                .append(data[i].content)))
+          )
+      }
+      window.scrollTo(0,document.body.scrollHeight);
     }
   });
 }

@@ -17,6 +17,7 @@ exports.morePosts = require('./morePosts');
 exports.index = function(req, res){
   var subject = req.param('subject');
   var content = req.param('content');
+  req.session.morePosts = 0;
   
   console.log("subject: ", subject, "   content: ", content);
   
