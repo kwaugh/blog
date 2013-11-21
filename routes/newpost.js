@@ -1,6 +1,5 @@
-var d = new Date();
-
 module.exports = function(req,res){
+  var d = new Date();
   var subject = req.param('subject');
   var content = req.param('content');
   
