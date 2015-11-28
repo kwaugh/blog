@@ -1,8 +1,9 @@
 extends layout
 
 block header
+  link(rel='stylesheet' type='text/css' href='/stylesheets/blog.css')
   title Welcome!
   
 block content
-  h1(style='color: black') Welcome, #{name}
-  img(src='http://mediad.publicbroadcasting.net/p/wjct/files/styles/card_280/public/201304/sucess%20kid%20twitter.jpeg')
+  center
+    h1(class='main-title') Welcome, #{name}

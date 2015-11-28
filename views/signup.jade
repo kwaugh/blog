@@ -2,38 +2,22 @@ extends layout
 
 block header
   title Signup Page
-  link(rel='stylesheet' type='text/css' href='/stylesheets/signup.css')
+  link(rel='stylesheet' type='text/css' href='/stylesheets/signin.css')
   
 block content
-  h1 Signup
-  form(method='post')
-    table
-      tr
-        td(class='label') Name
-        td
-          input(type='text' name='name' required)
-        td(class='error') #{nameError}
-      tr
-        td(class='label') Username
-        td
-          if locals.username 
-            input(type='text' name='username' value='#{username}' required)
-          else
-            input(type='text' name='username' value='' required)
-        td(class='error') #{userError}
-      tr
-        td(class='label') Password
-        td
-          input(type='password' name='password' value='' required)
-        td(class='error') #{pwError}
-      tr
-        td(class='label') Verify Password
-        td
-          input(type='password' name='verifyPassword' value='' required)
-        td(class='error') #{verifyPasswordError}
-      tr
-        td(class='label') Email (optional)
-        td
-          input(type='text' name='email' value='')
-        td(class='error') #{emailError}
-    input(type='submit')
+  form(class='form-signin' method='post')
+    h2(form-signin-heading) Signup
+    input(type='text' class='form-control' name='name' placeholder='Name' required)
+    td(class='error') #{nameError}
+      if locals.username 
+        input(type='text' class='form-control' name='username' value='#{username}' required)
+      else
+        input(type='text' class='form-control' name='username' value='' placeholder='Username' required)
+    input(type='password' class='form-control' name='password' value='' placeholder='Password' required)
+    td(class='error') #{pwError}
+    input(type='password' class='form-control' name='verifyPassword' value='' placeholder='Verify Password' required)
+    td(class='error') #{verifyPasswordError}
+    input(type='email' class='form-control' name='email' value='' placeholder='Email (Optional)')
+    td(class='error') #{emailError}
+    br
+    input(type='submit' class='btn btn-lg btn-primary btn-block')

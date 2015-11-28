@@ -27,7 +27,7 @@ module.exports = function(req, res){
   else
     if(req.session.unauthorizedAccess){
       req.session.unauthorizedAccess = false;
-      res.render('login', {message: 'You must first log in before you can access this page'});
+      res.render('login', {message: 'Please log in'});
     }
     else if(req.session.justLoggedOut){
       req.session.justLoggedOut = false;
