@@ -16,11 +16,14 @@ module.exports = function(req, res){
             req.session.name = doc.name;
             req.session.username = req.param('username');
             req.session.isLoggedIn = true;
+            res.redirect('/welcome');
+            /*
             if (req.session.redirectLoc) {
                 res.redirect('/' + req.session.redirectLoc);
             } else {
                 res.redirect('/welcome'); 
             }
+            */
           }
           else
             res.render('login', {loginError: 'The username or password that you specified is invalid'});

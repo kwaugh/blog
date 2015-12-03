@@ -3,8 +3,8 @@ var RSS = require('rss');
 module.exports = function(req, res) {
     var feed = new RSS({
         'title': 'Keivaun Waugh\'s Blog',
-        'feed_url': 'keivaunwaugh.com/feed',
-        'site_url': 'keivaunwaugh.com',
+        'feed_url': 'http://keivaunwaugh.com/feed',
+        'site_url': 'http://keivaunwaugh.com',
         'managingEditor': 'Keivaun Waugh',
         'webMaster': 'Keivaun Waugh'
     });
@@ -14,17 +14,13 @@ module.exports = function(req, res) {
             feed.item({
                 'title': docs[i].subject,
                 'description': docs[i].content,
-                'url': 'keivaunwaugh.com/' + docs[i]._id,
+                'url': 'http://keivaunwaugh.com/' + docs[i]._id,
                 'guid': docs[i]._id,
                 'author': docs[i].name,
                 'date': docs[i].date 
             });
         }
-        render(req, res, feed);
+        var xml = feed.xml({indent: true});
+        res.send(xml);
     });
 };
-
-function render(req, res, feed) {
-    var xml = feed.xml();
-    res.send(xml);
-}
