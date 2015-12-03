@@ -105,7 +105,7 @@ textarea {
 .post-heading {
     position: relative;
     border-bottom: 3px solid #666;
-    z-index: -2;
+    /* z-index: -2; */
 }
 
 .post-title {
