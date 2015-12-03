@@ -12,6 +12,7 @@ exports.users = require('./users');
 exports.user = require('./user');
 exports.manage = require('./manage');
 exports.morePosts = require('./morePosts');
+exports.feed = require('./feed');
 
 
 exports.index = function(req, res){

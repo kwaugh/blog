@@ -34,6 +34,7 @@ module.exports = function(req,res){
   }
   else{
     req.session.unauthorizedAccess = true;
+    req.session.redirectLoc = 'newpost';
     res.redirect('/login');
   }
 };
