@@ -8,9 +8,9 @@ block content
   form(class='form-signin' method='post')
     h2(class='form-signin-heading') Log In
     div(class='error') #{message}
+    div(class='error') #{loginError}
     
     input(type='text' class='form-control' name='username' placeholder='Username' required)
     input(type='password' class='form-control' name='password' placeholder='Password' required)
     br
     input(type='submit' class='btn btn-lg btn-primary btn-block' value='Submit')
-  div(class='error') #{loginError}
