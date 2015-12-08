@@ -10,7 +10,7 @@ module.exports = function(req,res){
     }
     else{
       if(req.param('subject') && req.param('content')){
-        if(req.param('subject').length > 40){
+        if(req.param('subject').length > 60){
           res.render('newpost', {error: 'Please limit your subject to 40 characters'});
           return;
         }
