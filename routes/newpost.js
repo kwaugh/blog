@@ -1,3 +1,5 @@
+var MAX_SUBJECT_LEN = 70;
+
 module.exports = function(req,res){
   var d = new Date();
   var subject = req.param('subject');
@@ -10,8 +12,8 @@ module.exports = function(req,res){
     }
     else{
       if(req.param('subject') && req.param('content')){
-        if(req.param('subject').length > 60){
-          res.render('newpost', {error: 'Please limit your subject to 40 characters'});
+        if(req.param('subject').length > MAX_SUBJECT_LEN){
+          res.render('newpost', {error: 'Please limit your subject to ' + MAX_SUBJECT_LEN + ' characters'});
           return;
         }
         POSTS.save({'name': req.session.name, 'username': req.session.username, 'subject': subject, 'content': content, 'date': d}, function(err, savedPost){
