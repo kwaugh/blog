@@ -40,6 +40,7 @@
 
 
 
+/*
 .container {
   margin: auto;
   width: 628px;
@@ -123,7 +124,6 @@ html {
       -ms-text-size-adjust: 100%;
 }
 body {
-  /* margin: 0; */
 }
 article,
 aside,
@@ -6247,3 +6247,4 @@ button.close {
     display: none !important;
   }
 }
+*/
