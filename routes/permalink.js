@@ -28,6 +28,6 @@ function render(viewCount, id, req, res) {
         if(err) {
             console.log('Error');
         }
-        res.render('permalink', {'doc': doc});
+        res.render('permalink', {'doc': doc, 'viewCount': viewCount});
     });
 }

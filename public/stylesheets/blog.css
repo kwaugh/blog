@@ -1,3 +1,7 @@
+.view-count {
+    float: right;
+}
+
 .footer {
     float: right;
 }
@@ -127,8 +131,11 @@ textarea {
     position: absolute;
     right: 0px;
     bottom: 0px;
-    color: #999;
     z-index: -1;
+}
+
+.meta-text {
+    color: #999;
 }
 
 .post-content {
