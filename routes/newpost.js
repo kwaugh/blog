@@ -16,7 +16,8 @@ module.exports = function(req,res){
           res.render('newpost', {error: 'Please limit your subject to ' + MAX_SUBJECT_LEN + ' characters'});
           return;
         }
-        POSTS.save({'name': req.session.name, 'username': req.session.username, 'subject': subject, 'content': content, 'date': d}, function(err, savedPost){
+        POSTS.save({'name': req.session.name, 'username': req.session.username, 'subject': subject,
+            'content': content, 'date': d, 'views': 0}, function(err, savedPost){
           if(err)
             console.log('ERROR');
           POSTS.findOne({'username': req.session.username, 'subject': subject, 'content': content}, function(err, doc){

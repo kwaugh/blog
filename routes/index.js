@@ -1,7 +1,3 @@
-
-/*
- * GET home page.
- */
 exports.login = require('./login');
 exports.newpost = require('./newpost');
 exports.welcome = require('./welcome');
@@ -15,6 +11,9 @@ exports.morePosts = require('./morePosts');
 exports.feed = require('./feed');
 
 
+/*
+ * GET home page.
+ */
 exports.index = function(req, res){
   var subject = req.param('subject');
   var content = req.param('content');

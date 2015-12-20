@@ -1,4 +1,4 @@
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcrypt-nodejs');
 
 var INVALID_LOGIN = 'Invalid username or password';
 

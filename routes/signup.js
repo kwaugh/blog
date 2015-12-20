@@ -1,4 +1,4 @@
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcrypt-nodejs');
 
 function isValidName(name){
   var valid = /[\w]{1,30}/;
