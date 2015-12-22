@@ -5,14 +5,14 @@ block header
   title #{name}'s Blog
 
 block content
-  h1(class='main-title' align='center') #{name}'s Blog
+  h1.main-title(align='center') #{name}'s Blog
   
-  div(id='content')
+  div#content
   each val in docs
-    div(class='post')
-      div(class='post-heading')
-        div(class='post-title')
+    div.post
+      div.post-heading
+        div.post-title
           a(href='/#{val._id}') #{val.subject}
-        div(class='meta-text') #{val.date}
-      div(class='post-content')
+        div.meta-text #{val.date}
+      div.post-content
         pre #{val.content}

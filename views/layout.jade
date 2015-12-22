@@ -7,29 +7,35 @@ html
     script(src='/javascripts/bootstrap.min.js')
     block header
   body.col-lg-8.col-lg-offset-2.col-xs-12
-    div(class='container-fluid')
-      nav#main-navbar.navbar.navbar-default.navbar-static
-        div.collapse.navbar-collapse.main-navbar-collapse
-          ul.nav.navbar-nav
-            li.dropdown
-              a#home-link.dropdown-toggle(href='/', role='button')  Home 
-            li.dropdown
-              a#newpost-link.dropdown-toggle(href='/newpost', role='button')  Create New Post 
-            li.dropdown
-              a#manage-link.dropdown-toggle(href='/manage', role='button')  Manage Posts 
-            li.dropdown
-              a#users-link.dropdown-toggle(href='/users', role='button')  Users 
-          ul.nav.navbar-nav.navbar-right
-            li.dropdown
-              a#account-link.dropdown-toggle(data-target='', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false') Account
-                span.caret
-              ul.dropdown-menu(aria-labelledby='account-link')
-                li
-                  a(href='/signup') Sign Up
-                li
-                  a(href='/login') Log In
-                li.divider(role='separator')
-                li
-                  a(href='/logout') Log Out
-   
+    div.container-fluid
+      nav.navbar.navbar-default.navbar-static
+        div.navbar-collapse
+          //
+            button.navbar-collapse.hidden-md(type='button' data-toggle='collapse' data-target='.main-navbar' aria-hidden='true')
+              span.iconbar
+              span.iconbar
+              span.iconbar
+          div.main-navbar
+            ul.nav.navbar-nav
+              li.dropdown
+                a#home-link.dropdown-toggle(href='/', role='button')  Home 
+              li.dropdown
+                a#newpost-link.dropdown-toggle(href='/newpost', role='button')  Create New Post 
+              li.dropdown
+                a#manage-link.dropdown-toggle(href='/manage', role='button')  Manage Posts 
+              li.dropdown
+                a#users-link.dropdown-toggle(href='/users', role='button')  Users 
+            ul.nav.navbar-nav.navbar-right
+              li.dropdown
+                a#account-link.dropdown-toggle(data-target='', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false') Account
+                  span.caret
+                ul.dropdown-menu(aria-labelledby='account-link')
+                  li
+                    a(href='/signup') Sign Up
+                  li
+                    a(href='/login') Log In
+                  li.divider(role='separator')
+                  li
+                    a(href='/logout') Log Out
+     
   block content

@@ -5,11 +5,11 @@ block header
   title Permalink
   
 block content
-  div(id='content')
-    div(class='post')
-      div(class='post-heading')
-        div(class='post-title') #{doc.subject} - #{doc.name}
-        div(class='meta-text') #{doc.date}
-      div(class='post-content')
+  div#content
+    div.post
+      div.post-heading
+        div.post-title #{doc.subject} - #{doc.name}
+        div.meta-text #{doc.date}
+      div.post-content
         pre #{doc.content}
-      span(class='pull-right meta-text') View Count: #{viewCount}
+      span.pull-right.meta-text View Count: #{viewCount}

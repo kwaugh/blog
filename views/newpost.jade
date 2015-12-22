@@ -5,16 +5,16 @@ block header
   title New Post
   
 block content
-  h1(class='main-title') New Post
-  div(class='error') #{error}
+  h1.main-title New Post
+  div.error #{error}
   form(method='post' name='blogpost')
     label Subject
     br
-    input(type='text' class='post-input' name='subject' style='width: 100%;' required)
+    input.post-input(type='text' name='subject' style='width: 100%;' required)
     br
     br
     label Blog
     br
-    textarea(name='content' class='new-post' rows='15' cols='50' required)
+    textarea.new-post(name='content' rows='15' cols='50' required)
     br
-    input(type='submit' value='Submit' class='btn btn-default')
+    input.btn.btn-default(type='submit' value='Submit')
