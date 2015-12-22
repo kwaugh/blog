@@ -15,13 +15,13 @@ block content
         div(class='post-heading')
           div(class='post-title')
             a(href='/#{val._id}') #{val.subject} - #{val.name}
-          div(class='post-date meta-text') #{val.date}
+          div(class='meta-text') #{val.date}
         div(class='post-content')
           pre #{val.content}
   div
     input(type='button' id='loadMorePosts' class='btn btn-default' value='Load More Posts' onclick='load()')
 
-  div(class='footer')
+  div(class='pull-right')
     a(href='/feed')
       img(src='/images/rss.png' width=15)
 

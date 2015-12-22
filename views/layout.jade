@@ -6,28 +6,8 @@ html
     script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js')
     script(src='/javascripts/bootstrap.min.js')
     block header
-  body
+  body.col-lg-8.col-lg-offset-2.col-xs-12
     div(class='container-fluid')
-      //
-        nav
-          ul
-            li
-              a(href="/") Home
-            li
-              a(href="/newpost") Create New Post
-            li
-              a(href="/manage") Manage Posts
-            li
-              a(href="/users") Users
-            li
-              a(href="") Account
-              ul
-                li
-                  a(href="/signup") Sign Up
-                li
-                  a(href="/login") Log In
-                li
-                  a(href="/logout") Log Out
       nav#main-navbar.navbar.navbar-default.navbar-static
         div.collapse.navbar-collapse.main-navbar-collapse
           ul.nav.navbar-nav

@@ -1,7 +1,6 @@
 extends layout
 
 block header
-  link(rel='stylesheet' type='text/css' href='/stylesheets/blog.css')
   title Manage Posts
   
 block content
@@ -11,14 +10,25 @@ block content
     each val in docs
       div(class='post')
         div(class='post-heading')
-          div(class='post-title') #{val.subject}
-          div(class='post-date') #{val.date}
+          span(class='post-title') #{val.subject}
+          span(class='pull-right') #{val.date}
         form(method='post' action='/manage' name='updatePosts')
           div(class='post-content')
             textarea(name='updatedPost' class='updated-post') #{val.content}
           input(type='hidden' name='ObjectId' value='#{val._id}')
           input(type='submit' class='btn btn-default' name='submit' value='Submit Changes' id='changes')
-          input(type='submit' class='btn btn-default' name='submit' value='Delete Post' id='deletePost')
+          // Small modal
+          button.btn.btn-danger.pull-right(type='button', data-toggle='modal', data-target='.delete-post-#{val._id}') Delete Post
+          div(class='modal fade delete-post-#{val._id}' tabindex='-1', role='dialog', aria-labelledby='delete-post-modal')
+            div.modal-dialog.modal-sm
+              div.modal-content
+                div.modal-header
+                  button.close(type='button', data-dismiss='modal', aria-label='Close')
+                    span(aria-hidden='true') &times;
+                  h4.modal-title.text-center Confirm Deletion
+                div.modal-body
+                  input.btn.btn-danger.center-block(type='submit' name='submit' value='Delete')
+
         br
         br
         br
