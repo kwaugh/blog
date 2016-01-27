@@ -115,8 +115,12 @@ textarea {
 
 .post-content {
     margin-top: 5px;
-    /* word-wrap: break-word; */
+}
+
+.post-content > pre {
     white-space: pre-line;
+    word-wrap: normal !important;
+    word-break: normal !important;
 }
 
 .age {
