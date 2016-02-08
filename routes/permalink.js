@@ -3,11 +3,18 @@ var viewCount = {};
 module.exports = function(req, res) {
     var id = req.param('id');
     console.log(id);
+    if (!isValidId(id)) {
+        res.redirect('/');
+    }
     if (viewCount.hasOwnProperty(id)) {
         viewCount[id]++;
         render(viewCount[id], id, req, res);
     } else {
         POSTS.findOne({'_id':MONGOJS.ObjectId(id)}, function(err, doc){
+            if (err) {
+                res.redirect('/');
+                return;
+            }
             if (doc.hasOwnProperty('viewCount')) {
                 viewCount[id] = doc.viewCount + 1;
             } else {
@@ -30,4 +37,14 @@ function render(viewCount, id, req, res) {
         }
         res.render('permalink', {'doc': doc, 'viewCount': viewCount});
     });
+}
+
+function isValidId(id) {
+    var isValid = true;
+    var checkForHexRegExp = new RegExp("^[0-9a-fA-F]{24}$");
+    if (checkForHexRegExp.test(id)) {
+        return true;
+    } else {
+        return false;
+    }
 }
