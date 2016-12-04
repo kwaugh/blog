@@ -5,9 +5,6 @@ function load(){
     if(data['error'] === 'There are no more posts'){
       $('#loadMorePosts').before('<div class="error">There are no more posts</div>');
       $('#loadMorePosts').remove();
-
-      
-      window.scrollTo(0,document.body.scrollHeight);
     }
     else{
       for(var i = 0; i < data.length; i++){
@@ -23,7 +20,6 @@ function load(){
                 .append(data[i].content)))
           )
       }
-      window.scrollTo(0,document.body.scrollHeight);
     }
   });
 }
