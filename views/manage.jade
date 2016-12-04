@@ -9,10 +9,10 @@ block content
   div#content
     each val in docs
       div.post
-        div.post-heading
-          div.post-title #{val.subject}
-          div.meta-text #{val.date}
         form(method='post' action='/manage' name='updatePosts')
+          div.post-heading
+            input.post-input(type='text' name='subject' style='width: 100%;' value='#{val.subject}' required)
+            div.meta-text #{val.date}
           div.post-content
             textarea(name='updatedPost' class='updated-post') #{val.content}
           input(type='hidden' name='ObjectId' value='#{val._id}')
