@@ -1,6 +1,8 @@
 module.exports = function(req, res){
+  console.log('updatedPost: ' + req.param('updatedPost'));
+  console.log('ObjectID:' + req.param('ObjectId'));
   if(req.param('updatedPost')){
-     POSTS.findAndModify({query: {'_id': MONGOJS.ObjectId(req.param('ObjectId')), username: req.session.username}, update: {$set: {'content': req.param('updatedPost'), 'subject': req.param('subject')}}}, function(){});
+     POSTS.findAndModify({query: {'_id': MONGOJS.ObjectId(req.param('ObjectId')), username: req.session.username}, update: {$set: {'content': req.param('updatedPost')}}}, function(){});
   }
   if(req.param('submit') === ('Delete')){
      console.log('deleting post');
