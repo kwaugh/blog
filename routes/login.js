@@ -14,18 +14,16 @@ module.exports = function(req, res){
         console.log('The doc is: ' + doc);
         bcrypt.compare(req.param('password'), doc.password, function(err, result){
           if(result){
-            //db.users.findOne({
             req.session.name = doc.name;
             req.session.username = req.param('username');
             req.session.isLoggedIn = true;
-            res.redirect('/welcome');
-            /*
             if (req.session.redirectLoc) {
-                res.redirect('/' + req.session.redirectLoc);
+                var redirectLoc = req.session.redirectLoc;
+                req.session.redirectLoc = null;
+                res.redirect(redirectLoc);
             } else {
                 res.redirect('/welcome'); 
             }
-            */
           }
           else
             res.render('login', {loginError: INVALID_LOGIN});
