@@ -2,7 +2,6 @@ var viewCount = {};
 
 module.exports = function(req, res) {
     var id = req.param('id');
-    console.log(id);
     if (!isValidId(id)) {
         res.redirect('/');
     }
@@ -27,13 +26,12 @@ module.exports = function(req, res) {
 
 function render(viewCount, id, req, res) {
     if (viewCount % 10 == 0) {
-        console.log('viewCount:', viewCount);
         POSTS.findAndModify({query: {'_id': MONGOJS.ObjectId(id), username: req.session.username},
             update: {$set: {'viewCount': viewCount}}}, function(){});
     }
     POSTS.findOne({'_id':MONGOJS.ObjectId(id)}, function(err, doc){
         if(err) {
-            console.log('Error');
+            console.log('Error', err);
         }
         res.render('permalink', {'doc': doc, 'viewCount': viewCount});
     });

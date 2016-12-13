@@ -4,14 +4,12 @@ var INVALID_LOGIN = 'Invalid username or password';
 
 module.exports = function(req, res){
   if(req.param('username') && req.param('password')){
-    //console.log('username: ' + req.param('username') + '  password: ' + req.param('password'));
     USERS.findOne({'username': req.param('username')}, function(err, doc){
       if(err || !doc){
         console.log('There was an error when logging in');
         res.render('login', {loginError: INVALID_LOGIN});
       }
       else{
-        console.log('The doc is: ' + doc);
         bcrypt.compare(req.param('password'), doc.password, function(err, result){
           if(result){
             req.session.name = doc.name;

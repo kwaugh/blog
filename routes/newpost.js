@@ -7,7 +7,6 @@ module.exports = function(req,res){
   
   if(req.session.isLoggedIn){
     if(!req.param('subject') && !req.param('content')){
-      console.log('Subject: ' + subject + 'Content: ' + content);
       res.render('newpost'); 
     }
     else{
@@ -19,19 +18,16 @@ module.exports = function(req,res){
         POSTS.save({'name': req.session.name, 'username': req.session.username, 'subject': subject,
             'content': content, 'date': d, 'views': 0}, function(err, savedPost){
           if(err)
-            console.log('ERROR');
+            console.log('ERROR:', err);
           POSTS.findOne({'username': req.session.username, 'subject': subject, 'content': content}, function(err, doc){
             if(err)
-              console.log('Error');
-            console.log('Document id is ' + doc._id);
+              console.log('Error:', err);
             res.redirect('/' + doc._id);
           });
         });
       }
       else{
-        console.log('in else');
         res.render('newpost', {error: 'Please provide both a subject and content'});
-        console.log('Subject: ' + subject + ' Content: ' + content);
       }
     }
   }

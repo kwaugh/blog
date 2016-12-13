@@ -6,8 +6,6 @@ function isValidName(name){
 }
 
 function isValidUsername(username){
-  console.log('testing username');
-  console.log(username);
   var valid = /[\w-]{3,20}/;
   return valid.test(username);
   
@@ -32,10 +30,8 @@ module.exports = function(req, res){
   var username = req.param('username');
   var pw = req.param('password');
   var email = req.param('email');
-  console.log('name', name, ' username ', username, ' password ', pw, ' email ', email);
   if(req.param('name') && req.param('username') && req.param('password') && req.param('verifyPassword'))
   {
-    console.log('is username valid?', isValidUsername(username));
     if(isValidName(name))
     {
       if(isValidUsername(username))
@@ -56,7 +52,7 @@ module.exports = function(req, res){
                   var hash = bcrypt.hashSync(pw, salt);
                   USERS.save({'name': name, 'username': username, 'password': hash, 'email': email}, function(err, savedUser){
                     if(err)
-                      console.log('THERE WAS AN ERROR');
+                      console.log('THERE WAS AN ERROR', err);
                   });
                   res.redirect('/welcome');
                 }

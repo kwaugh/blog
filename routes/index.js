@@ -19,8 +19,6 @@ exports.index = function(req, res){
   var content = req.param('content');
   req.session.morePosts = 0;
   
-  console.log("subject: ", subject, "   content: ", content);
-  
   POSTS.find().limit(10).sort({date:-1}, function(error, docs){
     res.render('index', {'name': 'Everyone', 'docs': docs});
   });

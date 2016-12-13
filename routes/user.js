@@ -1,7 +1,5 @@
 module.exports = function(req, res){ 
   USERS.findOne({username: req.param('user')}, function(err, doc){
-    console.log('doc: ' + doc);
-    console.log('NAME: ' + doc.name);
     var name = doc.name;
     
     POSTS.find({username: req.param('user')}).sort({date: -1}, function(err, docs){
