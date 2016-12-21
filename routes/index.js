@@ -20,6 +20,21 @@ exports.index = function(req, res){
   req.session.morePosts = 0;
   
   POSTS.find().limit(10).sort({date:-1}, function(error, docs){
-    res.render('index', {'name': 'Everyone', 'docs': docs});
+      res.render('index', {'name': 'Everyone', 'docs': docs}, function(err, html) {
+          html = allowFormatting(html);
+          res.send(html);
+      });
   });
 };
+
+function allowFormatting(html) {
+    // support bolding text
+    html = html.replace('&lt;b&gt;', '<b>').replace('&lt;/b&gt;', '</b>');
+    // support italicizing text
+    html = html.replace('&lt;i&gt;', '<i>').replace('&lt;/i&gt;', '</i>');
+    // support underlining text
+    html = html.replace('&lt;u&gt;', '<u>').replace('&lt;/u&gt;', '</u>');
+    // support strikethrough text
+    html = html.replace('&lt;strike&gt;', '<strike>').replace('&lt;/strike&gt;', '</strike>');
+    return html;
+}
