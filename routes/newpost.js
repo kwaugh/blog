@@ -11,7 +11,7 @@ module.exports = function(req,res) {
     var content = req.param('content');
 
     if (!validateParams(req, ['subject', 'content'])) {
-        res.render('newpost', {error: 'Please provide both a subject and content'});
+        res.render('newpost');
         return;
     }
     if (req.param('subject').length > MAX_SUBJECT_LEN) {
