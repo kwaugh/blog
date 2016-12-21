@@ -33,7 +33,10 @@ function render(viewCount, id, req, res) {
         if(err) {
             console.log('Error', err);
         }
-        res.render('permalink', {'doc': doc, 'viewCount': viewCount});
+        res.render('permalink', {'doc': doc, 'viewCount': viewCount}, function(err, html) {
+            html = allowFormatting(html);
+            res.send(html);
+        });
     });
 }
 

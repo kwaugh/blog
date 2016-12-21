@@ -3,14 +3,15 @@ module.exports = function(req, res){
     var name = doc.name;
     
     POSTS.find({username: req.param('user')}).sort({date: -1}, function(err, docs){
-    if(docs.length === 0)
-        res.render('user', {'name': name, 'docs': {}});
-    else
-      res.render('user', {'name': name, 'docs': docs});
+        if (docs.length === 0) {
+            res.render('user', {'name': name, 'docs': {}});
+        }
+        else {
+            res.render('user', {'name': name, 'docs': docs}, function(err, html) {
+                html = allowFormatting(html);
+                res.send(html);
+            });
+        }
     });  
   });
-  
-  
-  
-  
 };

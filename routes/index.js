@@ -27,7 +27,7 @@ exports.index = function(req, res){
   });
 };
 
-function allowFormatting(html) {
+global.allowFormatting = function(html) {
     // support bolding text
     html = html.replace('&lt;b&gt;', '<b>').replace('&lt;/b&gt;', '</b>');
     // support italicizing text
