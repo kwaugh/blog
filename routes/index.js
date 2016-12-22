@@ -27,14 +27,19 @@ exports.index = function(req, res){
   });
 };
 
+String.prototype.replaceAll = function(search, replacement) {
+    var target = this;
+    return target.replace(new RegExp(search, 'g'), replacement);
+};
+
 global.allowFormatting = function(html) {
     // support bolding text
-    html = html.replace('&lt;b&gt;', '<b>').replace('&lt;/b&gt;', '</b>');
+    html = html.replaceAll('&lt;b&gt;', '<b>').replaceAll('&lt;/b&gt;', '</b>');
     // support italicizing text
-    html = html.replace('&lt;i&gt;', '<i>').replace('&lt;/i&gt;', '</i>');
+    html = html.replaceAll('&lt;i&gt;', '<i>').replaceAll('&lt;/i&gt;', '</i>');
     // support underlining text
-    html = html.replace('&lt;u&gt;', '<u>').replace('&lt;/u&gt;', '</u>');
+    html = html.replaceAll('&lt;u&gt;', '<u>').replaceAll('&lt;/u&gt;', '</u>');
     // support strikethrough text
-    html = html.replace('&lt;strike&gt;', '<strike>').replace('&lt;/strike&gt;', '</strike>');
+    html = html.replaceAll('&lt;strike&gt;', '<strike>').replaceAll('&lt;/strike&gt;', '</strike>');
     return html;
 }
