@@ -23,7 +23,7 @@ module.exports = function(req, res) {
     POSTS.find({'name': req.session.name}).sort({date:-1}, function(err, docs){
         res.render('manage', {'docs': docs});
     });
-}
+};
 
 function validateParams(req, paramsList) {
     if (!req.body || req.body === null || req.body == {})
