@@ -37,4 +37,4 @@ global.allowFormatting = function(html) {
     // support strikethrough text
     html = html.replace('&lt;strike&gt;', '<strike>').replace('&lt;/strike&gt;', '</strike>');
     return html;
-}
+};
