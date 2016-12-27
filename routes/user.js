@@ -8,7 +8,7 @@ module.exports = function(req, res){
         }
         else {
             res.render('user', {'name': name, 'docs': docs}, function(err, html) {
-                html = allowFormatting(html);
+                html = ALLOW_FORMATTING(html);
                 res.send(html);
             });
         }

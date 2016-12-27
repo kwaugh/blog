@@ -1,8 +1,7 @@
 function load(){
   $.getJSON('/json/morePosts', function(data){
     //alert('success' + data);
-    console.log('Data: ' + data);
-    if(data['error'] === 'There are no more posts'){
+    if(data.error === 'There are no more posts'){
       $('#loadMorePosts').before('<div class="error">There are no more posts</div>');
       $('#loadMorePosts').remove();
     }
@@ -18,7 +17,7 @@ function load(){
             .append($('<div class="post-content"></div>')
               .append($('<pre></pre>')
                 .append(data[i].content)))
-          )
+          );
       }
     }
   });

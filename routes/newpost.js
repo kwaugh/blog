@@ -19,16 +19,18 @@ module.exports = function(req,res) {
         return;
     }
     POSTS.save(
-        {'name': req.session.name, 'username': req.session.username, 'subject': subject,
-        'content': content, 'date': d, 'views': 0},
-        function() {
-            POSTS.findOne({'username': req.session.username, 'subject': subject, 'content': content},
-                function(err, doc) {
-                    res.redirect('/' + doc._id);
+            {'name': req.session.name, 'username': req.session.username, 'subject': subject,
+                'content': content, 'date': d, 'views': 0},
+                function() {
+                    // generate the new index.html file
+                    RERENDER_INDEX(res);
+                    POSTS.findOne({'username': req.session.username, 'subject': subject, 'content': content},
+                            function(err, doc) {
+                                res.redirect('/' + doc._id);
+                            }
+                            );
                 }
             );
-        }
-    );
 };
 
 function validateParams(req, paramsList) {

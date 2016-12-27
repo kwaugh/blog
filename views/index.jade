@@ -2,26 +2,26 @@ extends layout
 
 block header
   link(rel='stylesheet' type='text/css' href='/stylesheets/blog.css')
-  script(src='//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js')
-  script(src='/javascripts/loadPosts.js')
   title Blog
   
 block content
-  h1(class='main-title' align='center') Blog
+  h1.main-title(align='center') Blog
 
-  div(id='content')
+  div#content
     each val in docs
-      div(class='post')
-        div(class='post-heading')
-          div(class='post-title')
+      div.post
+        div.post-heading
+          div.post-title
             a(href='/#{val._id}') #{val.subject} - #{val.name}
-          div(class='meta-text') #{val.date}
-        div(class='post-content')
+          div.meta-text #{val.date}
+        div.post-content
           pre #{val.content}
   div
-    input(type='button' id='loadMorePosts' class='btn btn-default' value='Load More Posts' onclick='load()')
+    input.btn.btn-default#loadMorePosts(type='button' value='Load More Posts' onclick='load()')
 
-  div(class='pull-right')
+  div.pull-right
     a(href='/feed')
       img(src='/images/rss.png' width=15)
 
+block foot
+  script(src='/javascripts/loadPosts.js')

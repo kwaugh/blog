@@ -14,11 +14,11 @@ module.exports = function(req, res) {
         POSTS.findAndModify(
             {query: {'_id': MONGOJS.ObjectId(req.param('ObjectId')), username: req.session.username},
                 update: {$set: {'content': req.param('updatedPost'), 'subject': req.param('subject')}}
-            }, function() {}
+            }, function() { RERENDER_INDEX(res); }
         );
     }
     if (req.param('submit') === ('Delete')) {
-        POSTS.remove({'_id': MONGOJS.ObjectId(req.param('ObjectId'))}, function(){ });
+        POSTS.remove({'_id': MONGOJS.ObjectId(req.param('ObjectId'))}, function(){ RERENDER_INDEX(res); });
     }
     POSTS.find({'name': req.session.name}).sort({date:-1}, function(err, docs){
         res.render('manage', {'docs': docs});

@@ -34,7 +34,7 @@ function render(viewCount, id, req, res) {
             console.log('Error', err);
         }
         res.render('permalink', {'doc': doc, 'viewCount': viewCount}, function(err, html) {
-            html = allowFormatting(html);
+            html = ALLOW_FORMATTING(html);
             res.send(html);
         });
     });
