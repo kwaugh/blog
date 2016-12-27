@@ -11,16 +11,21 @@ exports.morePosts = require('./morePosts');
 exports.feed = require('./feed');
 
 var path = require('path');
+var fs = require('fs');
 global.APP_DIR = path.dirname(require.main.filename);
 
 /*
  * GET home page.
  */
 exports.index = function(req, res){
+    req.session.morePosts = 0;
     if (typeof INDEX_HTML !== 'undefined' && INDEX_HTML !== '') {
         res.send(INDEX_HTML);
     } else {
         res.sendfile('html/index.html', {root: APP_DIR});
+        fs.readFile(APP_DIR + '/html/index.html', 'utf8', function(err, html) {
+            INDEX_HTML = html;
+        });
     }
 };
 
