@@ -18,7 +18,7 @@ module.exports = function(req, res) {
         );
     }
     if (req.param('submit') === ('Delete')) {
-        POSTS.remove({'_id': MONGOJS.ObjectId(req.param('ObjectId'))}, function(err, res){ });
+        POSTS.remove({'_id': MONGOJS.ObjectId(req.param('ObjectId'))}, function(){ });
     }
     POSTS.find({'name': req.session.name}).sort({date:-1}, function(err, docs){
         res.render('manage', {'docs': docs});
@@ -26,12 +26,14 @@ module.exports = function(req, res) {
 };
 
 function validateParams(req, paramsList) {
-    if (!req.body || req.body === null || req.body == {})
+    if (!req.body || req.body === null || req.body == {}) {
         return false;
+    }
     for (var param of paramsList) {
         var current = req.body[param];
-        if (current === undefined || current === '')
+        if (current === undefined || current === '') {
             return false;
+        }
     }
     return true;
 }

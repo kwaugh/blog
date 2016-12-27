@@ -21,7 +21,7 @@ module.exports = function(req,res) {
     POSTS.save(
         {'name': req.session.name, 'username': req.session.username, 'subject': subject,
         'content': content, 'date': d, 'views': 0},
-        function(err, savedPost) {
+        function() {
             POSTS.findOne({'username': req.session.username, 'subject': subject, 'content': content},
                 function(err, doc) {
                     res.redirect('/' + doc._id);
@@ -32,12 +32,14 @@ module.exports = function(req,res) {
 };
 
 function validateParams(req, paramsList) {
-    if (!req.body || req.body === null || req.body == {})
+    if (!req.body || req.body === null || req.body == {}) {
         return false;
+    }
     for (var param of paramsList) {
         var current = req.body[param];
-        if (current === undefined || current === '')
+        if (current === undefined || current === '') {
             return false;
+        }
     }
     return true;
 }

@@ -10,21 +10,14 @@ exports.manage = require('./manage');
 exports.morePosts = require('./morePosts');
 exports.feed = require('./feed');
 
+var path = require('path');
+var appDir = path.dirname(require.main.filename);
 
 /*
  * GET home page.
  */
 exports.index = function(req, res){
-  var subject = req.param('subject');
-  var content = req.param('content');
-  req.session.morePosts = 0;
-  
-  POSTS.find().limit(10).sort({date:-1}, function(error, docs){
-      res.render('index', {'name': 'Everyone', 'docs': docs}, function(err, html) {
-          html = allowFormatting(html);
-          res.send(html);
-      });
-  });
+    res.sendfile('html/index.html', {root: appDir});
 };
 
 String.prototype.replaceAll = function(search, replacement) {
@@ -33,13 +26,10 @@ String.prototype.replaceAll = function(search, replacement) {
 };
 
 global.allowFormatting = function(html) {
-    // support bolding text
+    // support bolding, italicizing, underlining, and strikethrough text
     html = html.replaceAll('&lt;b&gt;', '<b>').replaceAll('&lt;/b&gt;', '</b>');
-    // support italicizing text
     html = html.replaceAll('&lt;i&gt;', '<i>').replaceAll('&lt;/i&gt;', '</i>');
-    // support underlining text
     html = html.replaceAll('&lt;u&gt;', '<u>').replaceAll('&lt;/u&gt;', '</u>');
-    // support strikethrough text
-    html = html.replaceAll('&lt;strike&gt;', '<strike>').replaceAll('&lt;/strike&gt;', '</strike>');
+    html = html.replaceAll('&lt;strike&gt;', '<strike>') .replaceAll('&lt;/strike&gt;', '</strike>');
     return html;
 };
