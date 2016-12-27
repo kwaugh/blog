@@ -17,7 +17,11 @@ global.APP_DIR = path.dirname(require.main.filename);
  * GET home page.
  */
 exports.index = function(req, res){
-    res.sendfile('html/index.html', {root: APP_DIR});
+    if (typeof INDEX_HTML !== 'undefined' && INDEX_HTML !== '') {
+        res.send(INDEX_HTML);
+    } else {
+        res.sendfile('html/index.html', {root: APP_DIR});
+    }
 };
 
 String.prototype.replaceAll = function(search, replacement) {
@@ -38,7 +42,7 @@ global.RERENDER_INDEX = function(res) {
     POSTS.find().limit(10).sort({date:-1}, function(error, docs){
         res.render('index', {'name': 'Everyone', 'docs': docs}, function(err, html) {
             html = ALLOW_FORMATTING(html);
-            console.log('html:', html);
+            global.INDEX_HTML = html;
             var fs = require('fs');
             fs.writeFile(APP_DIR + '/html/index.html', html, function(err) {
                 if(err) {
