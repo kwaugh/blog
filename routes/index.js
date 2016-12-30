@@ -13,6 +13,7 @@ exports.feed = require('./feed');
 var path = require('path');
 var fs = require('fs');
 global.APP_DIR = path.dirname(require.main.filename);
+global.INDEX_HTML = '';
 
 /*
  * GET home page.
@@ -47,7 +48,7 @@ global.RERENDER_INDEX = function(res) {
     POSTS.find().limit(10).sort({date:-1}, function(error, docs){
         res.render('index', {'name': 'Everyone', 'docs': docs}, function(err, html) {
             html = ALLOW_FORMATTING(html);
-            global.INDEX_HTML = html;
+            INDEX_HTML = html;
             var fs = require('fs');
             fs.writeFile(APP_DIR + '/html/index.html', html, function(err) {
                 if(err) {
