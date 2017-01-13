@@ -41,6 +41,14 @@ global.ALLOW_FORMATTING = function(html) {
     html = html.replaceAll('&lt;i&gt;', '<i>').replaceAll('&lt;/i&gt;', '</i>');
     html = html.replaceAll('&lt;u&gt;', '<u>').replaceAll('&lt;/u&gt;', '</u>');
     html = html.replaceAll('&lt;strike&gt;', '<strike>') .replaceAll('&lt;/strike&gt;', '</strike>');
+    // allow hyperlinks
+    var linkRegex = new RegExp("&lt;link&gt;.*&lt;\/link&gt;");
+    var linkResult = linkRegex.exec(html);
+    if (linkResult) {
+        var linkTagChars = 12;
+        var linkText = linkResult[0].substr(12, linkResult[0].length - 2*linkTagChars);
+        html = html.replace(linkRegex, '<u><a href="' + linkText + '">' + linkText + '</a></u>');
+    }
     return html;
 };
 
