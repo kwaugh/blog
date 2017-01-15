@@ -32,23 +32,16 @@ exports.index = function(req, res){
 
 String.prototype.replaceAll = function(search, replacement) {
     var target = this;
-    return target.replace(new RegExp(search, 'g'), replacement);
+    return target.replace(new RegExp(search, 'gi'), replacement);
 };
 
 global.ALLOW_FORMATTING = function(html) {
-    // support bolding, italicizing, underlining, and strikethrough text
+    // support bolding, italicizing, underlining, strikethrough text, and hyperlinks
     html = html.replaceAll('&lt;b&gt;', '<b>').replaceAll('&lt;/b&gt;', '</b>');
     html = html.replaceAll('&lt;i&gt;', '<i>').replaceAll('&lt;/i&gt;', '</i>');
     html = html.replaceAll('&lt;u&gt;', '<u>').replaceAll('&lt;/u&gt;', '</u>');
     html = html.replaceAll('&lt;strike&gt;', '<strike>') .replaceAll('&lt;/strike&gt;', '</strike>');
-    // allow hyperlinks
-    var linkRegex = new RegExp("&lt;link&gt;.*&lt;\/link&gt;");
-    var linkResult = linkRegex.exec(html);
-    if (linkResult) {
-        var linkTagChars = 12;
-        var linkText = linkResult[0].substr(12, linkResult[0].length - 2*linkTagChars);
-        html = html.replace(linkRegex, '<u><a href="' + linkText + '">' + linkText + '</a></u>');
-    }
+    html = html.replaceAll('&lt;link&gt;(.*)&lt;\/link&gt;', '<u><a href="$1">$1</a></u>');
     return html;
 };
 
