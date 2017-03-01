@@ -20,7 +20,7 @@ module.exports = function(req, res) {
     if (req.param('submit') === ('Delete')) {
         POSTS.remove({'_id': MONGOJS.ObjectId(req.param('ObjectId'))}, function(){ RERENDER_INDEX(res); });
     }
-    POSTS.find({'name': req.session.name}).sort({date:-1}, function(err, docs){
+    POSTS.find({'username': req.session.username}).sort({date:-1}, function(err, docs){
         res.render('manage', {'docs': docs});
     });
 };
