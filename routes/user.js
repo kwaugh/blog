@@ -5,8 +5,7 @@ module.exports = function(req, res){
     POSTS.find({username: req.param('user')}).sort({date: -1}, function(err, docs){
         if (docs.length === 0) {
             res.render('user', {'name': name, 'docs': {}});
-        }
-        else {
+        } else {
             res.render('user', {'name': name, 'docs': docs}, function(err, html) {
                 html = ALLOW_FORMATTING(html);
                 res.send(html);
