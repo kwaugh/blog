@@ -9,6 +9,7 @@ exports.user = require('./user');
 exports.manage = require('./manage');
 exports.morePosts = require('./morePosts');
 exports.feed = require('./feed');
+exports.password = require('./password');
 
 var path = require('path');
 var fs = require('fs');

@@ -30,14 +30,26 @@ app.use(express.cookieParser('topiqac3098aoi8afawfd;kkf98er'));
 app.use(express.cookieSession());
 app.use(express.bodyParser());
 app.use(express.methodOverride());
-app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(function(req, res, next) {
+    if (req.method === 'GET'
+            && req.url !== '/password'
+            && !req.session.master_password) {
+        res.redirect('password');
+        return;
+    }
+    next();
+});
+
+app.use(app.router);
 
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+app.all('/password', routes.password);
 app.all('/newpost', routes.newpost);
 app.all('/signup', routes.signup);
 app.get('/welcome', routes.welcome);
