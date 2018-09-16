@@ -30,9 +30,15 @@ function setRandomColor(id) {
 
 }
 
+var vowel = new Set([65, 69, 73, 79, 85]);
+
 async function lusty_dunghole() {
-    var first_name_char = String.fromCharCode(65 + getRandomInt(26));
-    var second_name_char = String.fromCharCode(65 + getRandomInt(26));
+    var first_name_int = 65 + getRandomInt(26);
+    first_name_int = vowel.has(first_name_int) ? first_name_int + 1 : first_name_int;
+    var second_name_int = 65 + getRandomInt(26);
+    second_name_int = vowel.has(second_name_int) ? second_name_int + 1 : second_name_int;
+    var first_name_char = String.fromCharCode(first_name_int);
+    var second_name_char = String.fromCharCode(second_name_int);
     new_name = first_name_char + "usty " + second_name_char + "unghole";
     $("#lusty_dunghole").text(new_name);
     setRandomColor("#lusty_dunghole");
