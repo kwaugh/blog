@@ -4,6 +4,7 @@ block header
   title Blog
 
 block content
+  div(id='lusty_dunghole' class='text-center')
   h1.main-title(align='center') Blog
 
   div#content
@@ -23,6 +24,7 @@ block content
       img(src='/images/rss.jpg')
 
 block foot
+  script(src='/javascripts/common.js')
   script
     function load(){
     $.getJSON('/json/morePosts', function(data){
