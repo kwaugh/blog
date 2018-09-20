@@ -1,10 +1,9 @@
 module.exports = function(req, res){
-    if(req.session.morePosts) {
-        req.session.morePosts += 10;
+    if (!req.session.morePosts) {
+        req.session.morePosts = 0;
     }
-    else {
-        req.session.morePosts = 10;
-    }
+    req.session.morePosts += 10;
+
     POSTS.find().sort({date: -1}, function(err, docs){
         var arr = docs.splice(req.session.morePosts, 10);
         if(arr.length === 0){
