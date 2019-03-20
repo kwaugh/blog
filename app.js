@@ -12,10 +12,11 @@ var http = require('http');
 var path = require('path');
 // ssl config
 var fs = require('fs');
+const cert_loc = '/home/kwaugh/sslcert';
 var credentials = {
-    ca: fs.readFileSync('../sslcert/keivaunwaugh_com.ca-bundle'),
-    key: fs.readFileSync('../sslcert/keivaunwaugh_com.key'),
-    cert: fs.readFileSync('../sslcert/keivaunwaugh_com.crt')
+    ca: fs.readFileSync(path.join(cert_loc, 'keivaunwaugh_com.ca-bundle')),
+    key: fs.readFileSync(path.join(cert_loc, 'keivaunwaugh_com.key')),
+    cert: fs.readFileSync(path.join(cert_loc, 'keivaunwaugh_com.crt')),
 };
 
 var app = express();
