@@ -25,7 +25,7 @@ function isValidEmail(email){
   return false;
 }
 
-module.exports = function(req, res){
+module.exports = function(req, res) {
   var name = req.param('name');
   var username = req.param('username');
   var pw = req.param('password');

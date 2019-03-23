@@ -1,3 +1,4 @@
+// This page is essentially useless now since the blog lives behind a password
 var RSS = require('rss');
 
 module.exports = function(req, res) {

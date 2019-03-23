@@ -34,10 +34,6 @@ module.exports = function(req, res){
       req.session.unauthorizedAccess = false;
       res.render('login', {message: 'Please log in'});
     }
-    else if(req.session.justLoggedOut){
-      req.session.justLoggedOut = false;
-      res.render('login', {message: 'You have been logged out'});
-    }
     else
       res.render('login');
 };

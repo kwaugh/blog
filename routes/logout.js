@@ -1,5 +1,4 @@
-module.exports = function(req, res){
-  req.session.isLoggedIn = false;
-  req.session.justLoggedOut = true;
-  res.redirect('/login');
+module.exports = function(req, res) {
+    req.session.isLoggedIn = false;
+    res.render('login', {message: 'You have been logged out'});
 };
