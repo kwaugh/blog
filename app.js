@@ -10,15 +10,6 @@ var express = require('express');
 var routes = require('./routes');
 var http = require('http');
 var path = require('path');
-// ssl config
-var fs = require('fs');
-const cert_loc = '/home/kwaugh/sslcert';
-var credentials = {
-    ca: fs.readFileSync(path.join(cert_loc, 'keivaunwaugh_com.ca-bundle')),
-    key: fs.readFileSync(path.join(cert_loc, 'keivaunwaugh_com.key')),
-    cert: fs.readFileSync(path.join(cert_loc, 'keivaunwaugh_com.crt')),
-};
-
 var app = express();
 
 // all environments
