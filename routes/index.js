@@ -24,9 +24,17 @@ exports.index = function(req, res){
     if (typeof INDEX_HTML !== 'undefined' && INDEX_HTML !== '') {
         res.send(INDEX_HTML);
     } else {
-        res.sendfile('html/index.html', {root: APP_DIR});
-        fs.readFile(APP_DIR + '/html/index.html', 'utf8', function(err, html) {
-            INDEX_HTML = html;
+        fs.stat('html/index.html', function(err, stat) {
+            if (err === null) {
+                res.sendfile('html/index.html', {root: APP_DIR});
+                fs.readFile(APP_DIR + '/html/index.html', 'utf8', function(err, html) {
+                    INDEX_HTML = html;
+                });
+            } else {
+                index_html = RERENDER_INDEX(res);
+                res.send(index_html);
+                return;
+            }
         });
     }
 };
@@ -48,7 +56,13 @@ global.ALLOW_FORMATTING = function(html) {
 
 global.RERENDER_INDEX = function(res) {
     POSTS.find().limit(10).sort({date:-1}, function(error, docs){
+        if (error) {
+            console.log('error during rerender_index:', error);
+        }
         res.render('index', {'name': 'Everyone', 'docs': docs}, function(err, html) {
+            if (err) {
+                console.log('error duing index render:', err);
+            }
             html = ALLOW_FORMATTING(html);
             INDEX_HTML = html;
             var fs = require('fs');
@@ -57,6 +71,7 @@ global.RERENDER_INDEX = function(res) {
                     return console.log(err);
                 }
             });
+            return html;
         });
     });
 };
