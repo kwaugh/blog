@@ -16,5 +16,5 @@ RUN npm install
 # Bundle app source
 COPY . .
 
-EXPOSE 6000
+EXPOSE 80
 CMD [ "supervisor", "app.js" ]
