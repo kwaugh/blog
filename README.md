@@ -1,8 +1,9 @@
-#A really out-of-date blog application that I wrote in high school.
+# A really out-of-date blog application that I wrote in high school.
 
-##To run with docker
+## To run with docker
 Build the image
 > docker build -t kwaugh/blog .
+
 Run the image
 > docker run -p PORT:80 --network NETWORK_NAME --name APP_NAME kwaugh/blog
 
