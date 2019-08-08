@@ -24,9 +24,11 @@ app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// These URLs do not require the blog password to have been entered
+const publicPaths = new Set(['/password']);
 app.use(function(req, res, next) {
     if (req.method === 'GET'
-            && req.url !== '/password'
+            && !publicPaths.has(req.url)
             && !req.session.master_password) {
         res.redirect('password');
         return;
