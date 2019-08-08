@@ -1,16 +1,12 @@
 # A really out-of-date blog application that I wrote in high school.
 
 ## To run with docker
-Build the image
-> docker build -t kwaugh/blog .
+> docker-compose up
 
-Run the image
-> docker run -p PORT:80 --network NETWORK_NAME --name APP_NAME kwaugh/blog
+The above will build a container for the blog web app as well as a container for
+a mongo instance. To restore a backup of the mongo database:
 
-Note that this container expects another container with mongodb to be running on
-the same machine on the same docker network. For example:
-> docker run --network NETWORK_NAME --name mongodb webhippie/mongodb:latest
-
-After running this application for the first time with name APP_NAME, in the
-future it can be started by just running
-> docker start APP_NAME
+> docker cp $PATH_TO_BACKUP blog_mongo_1:/root
+> docker exec -it $MONGO_CONTAINER_ID bash
+> tar -xzvf $BACKUP_NAME
+> mongorestore $BACKUP_NAME
