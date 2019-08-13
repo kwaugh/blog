@@ -1,8 +1,9 @@
 version: '3'
 services:
-  blog:
-    build: .
+  web:
+    build: ./web
     ports:
       - "6000:80"
-  mongo:
-    image: "webhippie/mongodb:latest"
+  db:
+    # image: webhippie/mongodb:latest
+    build: ./db

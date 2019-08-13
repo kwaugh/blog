@@ -1,8 +1,9 @@
 todo.txt
-node_modules/*
+web/node_modules/*
+db/backup*
 .*.swp
 .*.swo
 *.log
 *.vim
-html/*
+web/html/*
 *.txt
