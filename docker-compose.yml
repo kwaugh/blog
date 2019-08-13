@@ -5,5 +5,4 @@ services:
     ports:
       - "6000:80"
   db:
-    # image: webhippie/mongodb:latest
     build: ./db
